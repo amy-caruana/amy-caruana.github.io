@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio</title>
+
+  <!--
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./assets/images/image (5).png" type="image/x-icon">
+
+  <!-- Include Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <script type="x-shader/x-vertex" id="vertexshader">
+
+    attribute float size;
+    attribute vec3 customColor;
+    varying vec3 vColor;
+
+  void main() {
+
+    vColor = customColor;
+    vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+    gl_PointSize = size * ( 300.0 / -mvPosition.z );
+    gl_Position = projectionMatrix * mvPosition;
+
+  }
+
+</script>
+  <script type="x-shader/x-fragment" id="fragmentshader">
+    uniform vec3 color;
+  uniform sampler2D pointTexture;
+ 
+  varying vec3 vColor;
+ 
+  void main() {
+ 
+    gl_FragColor = vec4( color * vColor, 1.0 );
+    gl_FragColor = gl_FragColor * texture2D( pointTexture, gl_PointCoord );
+ 
+  }
+ </script>
+
+
+  <!--
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <!--
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <canvas id="Canvas3D"></canvas>
+  <div id="magic"></div>
+  <div class="playground">
+    <div class="bottomPosition">
+      <!-- <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 278.8 278.8">
+        <circle fill="#000205" cx="139.4" cy="139.4" r="139.4" />
+        <g fill="none" stroke="#FFF" stroke-width="6.062" stroke-miterlimit="10">
+          <path d="M214 183.4l-74.6 43.1-75.5-43.6V95.8l75.5-43.5 75.4 43.5v59.8l-11.3 6.5z" />
+          <path d="M139.4 226.5l-18.8-38.2 18.8 10.8 75.4-43.5M63.9 95.8l75.3 43.6 75.6-43.6M139.2 139.4v59.7" />
+        </g>
+      </svg> -->
+      <!-- <h1 class="special">RICARDO SANPRIETO <br><span class="minText">Creative Frontend developer</span></h1> -->
+    </div>
+  </div>
+
+  <div id="MainDiv">
+    <div id="MouseGlow"></div>
+    <div id="MouseGlowBlur"></div>
+    <!--
+    - #MAIN
+  -->
+
+    <main>
+
+      <!--
+      - #SIDEBAR
+    -->
+
+
+      <aside class="sidebar" data-sidebar>
+
+        <div class="sidebar-info">
+
+          <!-- <figure class="avatar-box">
+          <img src="./assets/images/my-avatar.png" alt="Amy Caruana" width="80">
+        </figure> -->
+
+          <div class="info-content">
+            <h1 class="name" title="Amy Caruana">Amy Caruana</h1>
+
+            <p class="title">Full-Stack Developer</p>
+          </div>
+
+          <button class="info_more-btn" data-sidebar-btn>
+            <span>Show Contacts</span>
+
+            <ion-icon name="chevron-down"></ion-icon>
+          </button>
+
+        </div>
+
+        <div class="sidebar-info_more">
+
+          <div class="separator"></div>
+
+          <ul class="contacts-list">
+
+            <li class="contact-item">
+
+              <div class="icon-box">
+                <ion-icon name="mail-outline"></ion-icon>
+              </div>
+
+              <div class="contact-info">
+                <p class="contact-title">Email</p>
+
+                <a href="mailto:amycaruana2000@gmail.com" class="contact-link">amycaruana2000@gmail.com</a>
+              </div>
+
+            <li class="contact-item">
+
+              <div class="icon-box">
+                <ion-icon name="location-outline"></ion-icon>
+              </div>
+
+              <div class="contact-info">
+                <p class="contact-title">Location</p>
+
+                <address>Malta, MT</address>
+              </div>
+
+            </li>
+
+          </ul>
+
+          <div class="separator"></div>
+
+          <ul class="social-list">
+
+            <li class="social-item">
+              <a href="https://www.linkedin.com/in/amy-caruana-345247311/" class="social-link" target="_blank">
+                <ion-icon name="logo-linkedin"></ion-icon>
+              </a>
+            </li>
+
+            <li class="social-item">
+              <a href="https://github.com/amy-caruana" class="social-link" target="_blank">
+                <ion-icon name="logo-github"></ion-icon>
+              </a>
+            </li>
+
+            <li class="social-item">
+              <a href="AmyCaruana_CV.pdf" class="social-link" target="_blank">
+                <ion-icon name="id-card"></ion-icon>
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+      </aside>
+
+      <!--
+      - #main-content
+    -->
+
+
+      <div class="main-content">
+        <div id="ScrollContainer">
+
+          <!--
+        - #NAVBAR
+        -->
+
+          <nav class="navbar">
+
+            <ul class="navbar-list">
+
+              <li class="navbar-item">
+                <button class="navbar-link  active" data-nav-link>About</button>
+              </li>
+
+              <li class="navbar-item">
+                <button class="navbar-link" data-nav-link>Projects</button>
+              </li>
+
+              <li class="navbar-item">
+                <button class="navbar-link" data-nav-link>Experience</button>
+              </li>
+
+              <li class="navbar-item">
+                <button class="navbar-link" data-nav-link>Contact</button>
+              </li>
+
+            </ul>
+
+          </nav>
+
+          <!--
+        - #ABOUT
+      -->
+
+          <article class="about  active" data-page="about">
+
+            <header>
+              <h2 class="h2 article-title">About me</h2>
+            </header>
+
+            <section class="about-text">
+              <p>
+                I grew up in an environment surrounded by technology and coding. From an early age, I was fascinated
+                by
+                how computers and software worked, spending countless hours exploring and experimenting with different
+                programming languages and tools. This early exposure cultivated a deep passion for software
+                development
+                that has only grown stronger over time. My natural curiosity about technology and problem-solving
+                mindset led me to pursue a career in software development, where I can combine my technical skills
+                with
+                my creative drive to build innovative solutions.
+              </p>
+
+              <p>
+
+              </p>
+            </section>
+
+
+            <!--
+          - service
+          -->
+
+            <section class="service">
+
+              <h3 class="h3 service-title">My Services</h3>
+
+              <ul class="service-list">
+
+                <li class="service-item">
+
+                  <div class="service-icon-box">
+                    <img src="./assets/images/icon-design.svg
+                " alt="design icon" width="50">
+                  </div>
+
+                  <div class="service-content-box">
+                    <h4 class="h4 service-item-title">Web & App Design</h4>
+
+                    <p class="service-item-text">
+                      The most modern and high-quality design made at a professional level.
+                    </p>
+                  </div>
+
+                </li>
+
+                <li class="service-item">
+
+                  <div class="service-icon-box">
+                    <img src="./assets/images/icon-webdesdev.svg" alt="Web development icon" width="50">
+                  </div>
+
+                  <div class="service-content-box">
+                    <h4 class="h4 service-item-title">Web & App Development</h4>
+
+                    <p class="service-item-text">
+                      High-quality development of sites at the professional level.
+                    </p>
+                  </div>
+
+                </li>
+
+                <li class="service-item">
+
+                  <div class="service-icon-box">
+                    <img src="./assets/images/icon-gamedesdev.svg" alt="mobile app icon" width="50">
+                  </div>
+
+                  <div class="service-content-box">
+                    <h4 class="h4 service-item-title">Game Design & Development</h4>
+
+                    <p class="service-item-text">
+                      Professional development of applications for iOS and Android.
+                    </p>
+                  </div>
+
+                </li>
+
+                <li class="service-item">
+
+                  <div class="service-icon-box">
+                    <img src="./assets/images/icon-uxui.svg" alt="camera icon" width="50">
+                  </div>
+
+                  <div class="service-content-box">
+                    <h4 class="h4 service-item-title">UX/UI Design</h4>
+
+                    <p class="service-item-text">
+                      Branding, wireframes and more at a professional level.
+                    </p>
+                  </div>
+
+                </li>
+
+              </ul>
+
+            </section>
+
+
+            <!-- 
+          - testimonials modal
+        -->
+
+            <div class="modal-container" data-modal-container>
+
+              <div class="overlay" data-overlay></div>
+
+              <section class="testimonials-modal">
+
+                <button class="modal-close-btn" data-modal-close-btn>
+                  <ion-icon name="close-outline"></ion-icon>
+                </button>
+
+                <div class="modal-img-wrapper">
+                  <figure class="modal-avatar-box">
+                    <img src="./assets/images/avatar-1.png" alt="Daniel lewis" width="80" data-modal-img>
+                  </figure>
+
+                  <img src="./assets/images/icon-quote.svg" alt="quote icon">
+                </div>
+
+                <div class="modal-content">
+
+                  <h4 class="h3 modal-title" data-modal-title>Daniel lewis</h4>
+
+                  <time datetime="2021-06-14">14 June, 2021</time>
+
+                  <div data-modal-text>
+                    <p>
+                      Richard was hired to create a corporate identity. We were very pleased with the work done. She
+                      has
+                      a
+                      lot of experience
+                      and is very concerned about the needs of client. Lorem ipsum dolor sit amet, ullamcous cididt
+                      consectetur adipiscing
+                      elit, seds do et eiusmod tempor incididunt ut laborels dolore magnarels alia.
+                    </p>
+                  </div>
+
+                </div>
+
+              </section>
+
+            </div>
+
+
+            <!--
+          - clients
+        -->
+            <!-- 
+        <section class="clients">
+
+          <h3 class="h3 clients-title">Clients</h3>
+
+          <ul class="clients-list has-scrollbar">
+
+            <li class="clients-item">
+              <a href="#">
+                <img src="./assets/images/logo-1-color.png" alt="client logo">
+              </a>
+            </li>
+
+            <li class="clients-item">
+              <a href="#">
+                <img src="./assets/images/logo-2-color.png" alt="client logo">
+              </a>
+            </li>
+
+            <li class="clients-item">
+              <a href="#">
+                <img src="./assets/images/logo-3-color.png" alt="client logo">
+              </a>
+            </li>
+
+            <li class="clients-item">
+              <a href="#">
+                <img src="./assets/images/logo-4-color.png" alt="client logo">
+              </a>
+            </li>
+
+            <li class="clients-item">
+              <a href="#">
+                <img src="./assets/images/logo-5-color.png" alt="client logo">
+              </a>
+            </li>
+
+            <li class="clients-item">
+              <a href="#">
+                <img src="./assets/images/logo-6-color.png" alt="client logo">
+              </a>
+            </li>
+
+          </ul>
+
+        </section> -->
+
+          </article>
+
+          <!--
+        - #PROJECTS
+      -->
+          <article class="portfolio" data-page="projects">
+
+            <header>
+              <h2 class="h2 article-title">Projects</h2>
+            </header>
+
+
+            <section class="projects">
+
+              <ul class="filter-list">
+
+                <li class="filter-item">
+                  <button class="active" data-filter-btn>All</button>
+                </li>
+
+                <li class="filter-item">
+                  <button data-filter-btn>Web design</button>
+                </li>
+
+                <li class="filter-item">
+                  <button data-filter-btn>Applications</button>
+                </li>
+
+                <li class="filter-item">
+                  <button data-filter-btn>Web development</button>
+                </li>
+
+              </ul>
+
+              <div class="filter-select-box">
+
+                <button class="filter-select" data-select>
+
+                  <div class="select-value" data-selecct-value>Select category</div>
+
+                  <div class="select-icon">
+                    <ion-icon name="chevron-down"></ion-icon>
+                  </div>
+
+                </button>
+
+                <ul class="select-list">
+
+                  <li class="select-item">
+                    <button data-select-item>All</button>
+                  </li>
+
+                  <li class="select-item">
+                    <button data-select-item>Web design</button>
+                  </li>
+
+                  <li class="select-item">
+                    <button data-select-item>Applications</button>
+                  </li>
+
+                  <li class="select-item">
+                    <button data-select-item>Web development</button>
+                  </li>
+
+                </ul>
+
+              </div>
+
+              <ul class="project-list">
+
+                <li class="project-item  active" data-filter-item data-category="web development">
+                  <a href="#">
+
+                    <figure class="project-img">
+                      <div class="project-item-icon-box">
+                        <ion-icon name="eye-outline"></ion-icon>
+                      </div>
+
+                      <img src="./assets/images/project-1.jpg" alt="finance" loading="lazy">
+                    </figure>
+
+                    <h3 class="project-title">Finance</h3>
+
+                    <p class="project-category">Web development</p>
+
+                  </a>
+                </li>
+
+                <li class="project-item  active" data-filter-item data-category="web development">
+                  <a href="#">
+
+                    <figure class="project-img">
+                      <div class="project-item-icon-box">
+                        <ion-icon name="eye-outline"></ion-icon>
+                      </div>
+
+                      <img src="./assets/images/project-2.png" alt="orizon" loading="lazy">
+                    </figure>
+
+                    <h3 class="project-title">Orizon</h3>
+
+                    <p class="project-category">Web development</p>
+
+                  </a>
+                </li>
+
+                <li class="project-item  active" data-filter-item data-category="web design">
+                  <a href="#">
+
+                    <figure class="project-img">
+                      <div class="project-item-icon-box">
+                        <ion-icon name="eye-outline"></ion-icon>
+                      </div>
+
+                      <img src="./assets/images/project-3.jpg" alt="fundo" loading="lazy">
+                    </figure>
+
+                    <h3 class="project-title">Fundo</h3>
+
+                    <p class="project-category">Web design</p>
+
+                  </a>
+                </li>
+
+                <li class="project-item  active" data-filter-item data-category="applications">
+                  <a href="#">
+
+                    <figure class="project-img">
+                      <div class="project-item-icon-box">
+                        <ion-icon name="eye-outline"></ion-icon>
+                      </div>
+
+                      <img src="./assets/images/project-4.png" alt="brawlhalla" loading="lazy">
+                    </figure>
+
+                    <h3 class="project-title">Brawlhalla</h3>
+
+                    <p class="project-category">Applications</p>
+
+                  </a>
+                </li>
+
+                <li class="project-item  active" data-filter-item data-category="web design">
+                  <a href="#">
+
+                    <figure class="project-img">
+                      <div class="project-item-icon-box">
+                        <ion-icon name="eye-outline"></ion-icon>
+                      </div>
+
+                      <img src="./assets/images/project-5.png" alt="dsm." loading="lazy">
+                    </figure>
+
+                    <h3 class="project-title">DSM.</h3>
+
+                    <p class="project-category">Web design</p>
+
+                  </a>
+                </li>
+
+                <li class="project-item  active" data-filter-item data-category="web design">
+                  <a href="#">
+
+                    <figure class="project-img">
+                      <div class="project-item-icon-box">
+                        <ion-icon name="eye-outline"></ion-icon>
+                      </div>
+
+                      <img src="./assets/images/project-6.png" alt="metaspark" loading="lazy">
+                    </figure>
+
+                    <h3 class="project-title">MetaSpark</h3>
+
+                    <p class="project-category">Web design</p>
+
+                  </a>
+                </li>
+
+                <li class="project-item  active" data-filter-item data-category="web development">
+                  <a href="#">
+
+                    <figure class="project-img">
+                      <div class="project-item-icon-box">
+                        <ion-icon name="eye-outline"></ion-icon>
+                      </div>
+
+                      <img src="./assets/images/project-7.png" alt="summary" loading="lazy">
+                    </figure>
+
+                    <h3 class="project-title">Summary</h3>
+
+                    <p class="project-category">Web development</p>
+
+                  </a>
+                </li>
+
+                <li class="project-item  active" data-filter-item data-category="applications">
+                  <a href="#">
+
+                    <figure class="project-img">
+                      <div class="project-item-icon-box">
+                        <ion-icon name="eye-outline"></ion-icon>
+                      </div>
+
+                      <img src="./assets/images/project-8.jpg" alt="task manager" loading="lazy">
+                    </figure>
+
+                    <h3 class="project-title">Task Manager</h3>
+
+                    <p class="project-category">Applications</p>
+
+                  </a>
+                </li>
+
+                <li class="project-item  active" data-filter-item data-category="web development">
+                  <a href="#">
+
+                    <figure class="project-img">
+                      <div class="project-item-icon-box">
+                        <ion-icon name="eye-outline"></ion-icon>
+                      </div>
+
+                      <img src="./assets/images/project-9.png" alt="arrival" loading="lazy">
+                    </figure>
+
+                    <h3 class="project-title">Arrival</h3>
+
+                    <p class="project-category">Web development</p>
+
+                  </a>
+                </li>
+
+              </ul>
+
+            </section>
+
+
+          </article>
+
+
+          <!--
+        - #EXPERIENCE
+      -->
+
+          <article class="resume" data-page="experience">
+
+            <header>
+              <h2 class="h2 article-title">Experience</h2>
+            </header>
+
+            <section class="timeline">
+
+              <div class="title-wrapper">
+                <div class="icon-box">
+                  <ion-icon name="book-outline"></ion-icon>
+                </div>
+
+                <h3 class="h3">Experience</h3>
+              </div>
+
+              <ol class="timeline-list">
+
+                <li class="timeline-item">
+
+                  <h4 class="h4 timeline-item-title">Multimedia Developer</h4>
+                  <h5 class="h6">Information Management Unit at the Ministry for the National Heritage, The Arts and
+                    Local
+                    Government</h5>
+
+                  <span>02/2023 - 05/2024</span>
+
+                  <p class="timeline-text">
+                    • Designed and developed various websites using WordPress, ensuring seamless user
+                    experiences and device responsiveness.<br>
+                    • Created dynamic applications to meet diverse business needs and provided
+                    comprehensive technical support to optimize system performance.<br>
+                    • Enhanced website accessibility and produced compelling video content with Adobe
+                    After Effects and Premiere Pro.<br>
+                    • Designed captivating posters and banners using Adobe Photoshop.<br>
+                    • Presented insightful data analysis using Power BI and innovated applications such
+                    as a visitor management system and a Quick Access app that streamlined employee
+                    navigation with intuitive filtering through numerous application icons.
+                  </p>
+
+                </li>
+
+                <li class="timeline-item">
+
+                  <h4 class="h4 timeline-item-title">Java Developer</h4>
+                  <h5 class="h6">Student Apprentice @ University of Malta Institute for Sustainable Energy</h5>
+
+                  <span>06/2022 - 08/2022</span>
+
+                  <p class="timeline-text">
+                    • Designed and developed a Java program in NetBeans that enabled users to input
+                    parameters and select building types.<br>
+                    • Implemented a classification system that categorized buildings as low-polluting,
+                    very-low-polluting, or non-low-polluting based on user inputs.<br>
+                    • Calculated and displayed total energy usage per unit area, providing users with accurate
+                    environmental and energy insights.<br>
+                    • Integrated user-friendly input systems and efficient data processing to deliver
+                    actionable environmental and energy insights.
+                  </p>
+
+                </li>
+
+                <li class="timeline-item">
+
+                  <h4 class="h4 timeline-item-title">IT and Networking Technical Support</h4>
+                  <h5 class="h6">Student Apprentice @ Ħad-Dingli Local Council</h5>
+
+                  <span>07/2021 - 09/2021</span>
+
+                  <p class="timeline-text">
+                    • Assisted a local council in a large-scale project to convert from a private network to a
+                    government domain-based WAN.<br>
+                    • Performed various tasks; including software installation, printer setup, data transfer,
+                    NAS drive installation, and data collection.<br>
+                    • Provided day-to-day technical support to ensure seamless operations.<br>
+                    • Designed posters for events using Adobe Photoshop.
+
+                  </p>
+
+                </li>
+
+                <li class="timeline-item">
+
+                  <h4 class="h4 timeline-item-title">Assistant Network Technician</h4>
+                  <h5 class="h6">Vodafone</h5>
+
+                  <span>11/2019 — 05/2020</span>
+
+                  <p class="timeline-text">
+                    • Managed and maintained network infrastructure, including router configuration and
+                    general administrative tasks.<br>
+                    • Ensured optimal network performance and stability.<br>
+                    • Played a key role in the development and introduction of 5G technology across multiple
+                    cities in Malta.<br>
+                    • Collaborated with cross-functional teams to plan, execute, and oversee 5G network
+                    upgrades and deployments.<br>
+                    • Contributed to the successful launch of 5G services, enhancing connectivity and
+                    improving user experience.
+                  </p>
+
+                </li>
+
+              </ol>
+
+            </section>
+
+            <section class="timeline">
+
+              <div class="title-wrapper">
+                <div class="icon-box">
+                  <ion-icon name="book-outline"></ion-icon>
+                </div>
+
+                <h3 class="h3">Education</h3>
+              </div>
+
+              <ol class="timeline-list">
+
+                <li class="timeline-item">
+
+                  <h4 class="h4 timeline-item-title">Bachelor of Science (Hons)
+                    in Multimedia Software Development </h4>
+
+                  <h5 class="h6">MCAST Institute of Information and Communication Technology</h3>
+
+                    <span>2021 — 2024</span>
+
+                    <p class="timeline-text">
+                      Dissertation: "Enhancing User
+                      Experience and Usability in
+                      Agricultural Automation through
+                      an Intuitive Mobile Application
+                      Front-End Interface".
+                      This application was built using
+                      Android Studio. It was trained
+                      with two different machine
+                      learning algorithms; LSTM and
+                      GRU with the help of a weather
+                      API in order to predict future
+                      temperatures in greenhouses
+                      and to help farmers to regulate
+                      their temperatures for the best
+                      crop yield. Additionally, it was
+                      built using a LAMP stack (Linux,
+                      Apache, MySQL, PHP), ensuring
+                      efficient back-end processing
+                      and seamless user interaction
+                    </p>
+
+                </li>
+
+                <li class="timeline-item">
+
+                  <h4 class="h4 timeline-item-title">Advanced Diploma
+                    in Multimedia Software Development </h4>
+
+                  <h5 class="h6">MCAST Institute of Information and Communication Technology</h3>
+
+                    <span>2019 — 2021</span>
+
+                    <p class="timeline-text">
+                    </p>
+
+                </li>
+
+              </ol>
+
+            </section>
+
+          </article>
+
+
+          <!--
+        - #CONTACT
+      -->
+
+          <article class="contact" data-page="contact">
+
+            <header>
+              <h2 class="h2 article-title">Contact</h2>
+            </header>
+
+            <section class="contact-form">
+
+              <h3 class="h3 form-title">Contact Form</h3>
+
+              <form action="#" class="form" data-form>
+
+                <div class="input-wrapper">
+                  <input type="text" name="fullname" class="form-input" placeholder="Full name" required
+                    data-form-input>
+
+                  <input type="email" name="email" class="form-input" placeholder="Email address" required
+                    data-form-input>
+                </div>
+
+                <textarea name="message" class="form-input" placeholder="Your Message" required
+                  data-form-input></textarea>
+
+                <button class="form-btn" type="submit" disabled data-form-btn>
+                  <ion-icon name="paper-plane"></ion-icon>
+                  <span>Send Message</span>
+                </button>
+              </form>
+
+              <br>
+              <section class="mapbox" data-mapbox>
+                <figure>
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26609.447062607807!2d14.442508716868334!3d35.89978377733421!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x130e452c5d6e1d45%3A0x3258d3d13b68da41!2sMalta!5e0!3m2!1sen!2sbd!4v1647608789441!5m2!1sen!2sbd"
+                    width="400" height="300" loading="lazy"></iframe>
+                </figure>
+              </section>
+
+            </section>
+
+          </article>
+
+        </div>
+      </div>
+
+    </main>
+
+    <!--
+    - custom js link
+  -->
+
+
+    <!--
+    - ionicon link
+  -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+  </div>
+  <button id="MainButton">
+    <img src="/assets/images/spaceship.png" alt="Spaceship" id="SpaceshipImage" />
+  </button>
+
+
+  <script type="module" src="./assets/js/canvas.js"></script>
+  <script src="./assets/js/script.js"></script>
+  <script src="./assets/js/main.js"></script>
+
+
+</body>
+
+</html>
