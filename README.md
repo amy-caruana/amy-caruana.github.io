@@ -2,10 +2,10 @@
 ![alt text](https://img.shields.io/badge/Javascript_(ES6)-WebGL2-blue) ![alt text](https://img.shields.io/badge/HTML5-CSS3-green)
 
 
-Welcome to my [personal portfolio website](https://amy_caruana.github.io/)! This project showcases my work as an aspiring full-stack software developer and features a unique blend of modern web design and WEBGL2 graphics. Below, you'll find details about the development process, key features, and how to explore the site.
+Welcome to my [personal portfolio website](https://amy-caruana.github.io/)! This project showcases my work as an aspiring full-stack software developer and features a unique blend of modern web design and WEBGL2 graphics. Below, you'll find details about the development process, key features, and how to explore the site.
 
-![alt text](https://github.com/amy-caruana/amy_caruana.github.io/tree/main/assets/images/screen1.png)
-![alt text](https://github.com/amy-caruana/amy_caruana.github.io/tree/main/assets/images/screen2.png)
+![alt text](https://github.com/amy-caruana/amy-caruana.github.io/blob/main/assets/images/screen1.png)
+![alt text](https://github.com/amy-caruana/amy-caruana.github.io/blob/main/assets/images/screen2.png)
 
 ## Prerequisites
 Before you begin, ensure you have met the following requirements:
