@@ -38,5 +38,6 @@ git clone https://github.com/amy-caruana/amy-caruana.github.io.git
 - Modern Interface: Inspired by the clean design of [codewithsadee's portfolio](https://codewithsadee.github.io/vcard-personal-portfolio/)
 
 ## Contact
-If you want to contact me you can reach me at [LinkedIn](https://www.linkedin.com/in/amy-caruana-345247311/).
+If you want to contact me you can reach me on [LinkedIn](https://www.linkedin.com/in/amy-caruana-345247311/) or send me an email
+[Gmail](amycaruana2000@gmail.com)
 
