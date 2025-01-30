@@ -18,13 +18,13 @@ To install **My Portfolio**, follow these steps:
 Linux and macOS:
 
 ```bash
-sudo git clone https://github.com/amy_caruana/amy_caruana.github.io.git
+sudo git clone https://github.com/amy-caruana/amy-caruana.github.io.git
 ```
 
 Windows:
 
 ```bash
-git clone https://github.com/amy_caruana/amy_caruana.github.io.git
+git clone https://github.com/amy-caruana/amy-caruana.github.io.git
 ```
 
 ## Built With
