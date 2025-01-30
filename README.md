@@ -18,25 +18,24 @@ To install **My Portfolio**, follow these steps:
 Linux and macOS:
 
 ```bash
-sudo git clone https://github.com/amy_caruana/amy_caruana.github.io.git
+sudo git clone https://github.com/amy-caruana/amy-caruana.github.io.git
 ```
 
 Windows:
 
 ```bash
-git clone https://github.com/amy_caruana/amy_caruana.github.io.git
+git clone https://github.com/amy-caruana/amy-caruana.github.io.git
 ```
 
 ## Built With
 - **HTML5**: For the structure and content of the site.
 - **CSS3**: For the styling and layout.
-- **JavaScript (ES6)**: For interactivity, terminal functionality, and WebGL2 rendering.
-- **WebGL2**: Used to create the 3D rendering of the retro computer.
+- **JavaScript (ES6)**: For interactivity and WebGL2 rendering.
+- **WebGL2**: Used for the interactive text.
 - **GitHub Pages**: For hosting the live version of the site.
 
 ## Inspirations
 - Modern Interface: Inspired by the clean design of [codewithsadee's portfolio](https://codewithsadee.github.io/vcard-personal-portfolio/)
 
 ## Contact
-If you want to contact me you can reach me at [LinkedIn](https://www.linkedin.com/in/amy-caruana-345247311/).
-
+If you want to contact me you can reach me on [LinkedIn](https://www.linkedin.com/in/amy-caruana-345247311/)
