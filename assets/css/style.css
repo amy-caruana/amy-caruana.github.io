@@ -104,6 +104,14 @@
 
 }
 
+* {
+  user-select: none;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10+ */
+}
+
+
+
 canvas {
   display: block;
   width: 100%;
@@ -112,16 +120,36 @@ canvas {
 
 }
 
+
+
+
 .signature {
   position: fixed;
   bottom: 20px;
   right: 20px;
   color: #8af0ff;
   font-size: clamp(10px, 2vw, 12px);
-  opacity: 0.7;
+  /* opacity: 0.7; */
   font-size: 20px;
-  font-family: "Press Start 2P", cursive;
+  font-family: "Press Start 2P", monospace;
+  user-select: none; /* Prevents text selection */
 }
+
+.instructions {
+	position: fixed;
+	top: 20px; /* Move the text to the top */
+	left: 50%;
+	transform: translateX(-50%);
+	font-family: "Press Start 2P", monospace;
+	font-size: clamp(10px, 2vw, 5px);
+	color: #8aedff;
+	text-align: center;
+
+	line-height: 1.6;
+
+  user-select: none; /* Prevents text selection */
+}
+
 
 #MainButton {
   width: 7.5vh;
@@ -142,6 +170,12 @@ canvas {
   
   transition: font-size 0.15s ease, transform 0.25s ease;
   cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+  #MainButton {
+      display: none;
+  }
 }
 
 #SpaceshipImage {
@@ -300,6 +334,8 @@ article {
   padding: 15px;
   box-shadow: var(--shadow-1);
   z-index: 1;
+  overflow: visible; /* Allow content to be visible */
+  position: relative;
 }
 
 .separator {
@@ -619,7 +655,7 @@ main {
 \*-----------------------------------*/
 
 .navbar {
-  position: fixed;
+
   bottom: 0;
   left: 0;
   width: 100%;
@@ -668,6 +704,8 @@ main {
 }
 
 .about-text {
+  overflow: visible; /* Allow content to be visible */
+  position: relative;
   color: var(--light-gray);
   font-size: var(--fs-6);
   font-weight: var(--fw-300);
@@ -986,6 +1024,8 @@ main {
   align-items: center;
   gap: 15px;
   margin-bottom: 25px;
+  overflow: visible; /* Allow content to be visible */
+  position: relative;
 }
 
 .timeline-list {
@@ -1133,6 +1173,7 @@ main {
   visibility: hidden;
   pointer-events: none;
   transition: 0.15s ease-in-out;
+  background-color: hsla(206, 37%, 40%, 0.908);
 }
 
 .filter-select.active+.select-list {
@@ -1297,6 +1338,8 @@ main {
 }
 
 .contact-form {
+  overflow: visible; /* Allow content to be visible */
+  position: relative;
   margin-bottom: 10px;
 }
 
