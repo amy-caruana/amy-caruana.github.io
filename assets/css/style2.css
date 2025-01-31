@@ -1,0 +1,215 @@
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+::selection {
+    background: none;
+}
+
+body,
+html {
+    height: 100%;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    background: #2B2B2D;
+    color: #C5C5C7;
+    transition: all 0.5s cubic-bezier(.64, 0, .25, 1);
+}
+
+.switch {
+    width: 3.5rem;
+    height: 1rem;
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.15);
+    transition: all 0.3s cubic-bezier(.64, 0, .25, 1);
+    transform-style: preserve-3d;
+    border: 0;
+    margin: 1rem;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    padding: 0;
+}
+
+.switch>input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    display: block;
+    width: 100%;
+    height: 200%;
+    margin: 0;
+    z-index: 1;
+    transform: translateY(-25%);
+    appearance: none;
+    background: red;
+    transform-style: preserve-3d;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.switch>input:checked+label {
+    transform: translateX(75%);
+    color: #FFE175;
+}
+
+.switch>input:checked+label:before {
+    opacity: 0.5;
+    background: radial-gradient(circle at 50% 50%, #FFE175, transparent 55%, transparent);
+    transform: translate(-50%, -50%) rotate(60deg);
+}
+
+.switch>input:checked+label:after {
+    transition: background 0.5s cubic-bezier(.64, 0, .25, 1), box-shadow 1s cubic-bezier(.64, 0, .25, 1);
+    background:
+        radial-gradient(circle at 205% 15%, rgba(0, 0, 0, 0.1) 0%, transparent 100%) no-repeat,
+        radial-gradient(circle at 280% 45%, rgba(0, 0, 0, 0.1) 0%, transparent 100%) no-repeat,
+        radial-gradient(circle at 310% 190%, rgba(0, 0, 0, 0.1) 0%, transparent 100%) no-repeat;
+    background-color: white;
+    box-shadow: inset 0 0 1rem 0.5rem #FFE175, 0 0 2rem #FFE175;
+}
+
+.switch>input:hover:checked+label:before {
+    animation: sun 10s linear infinite;
+}
+
+.switch>label {
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 1rem;
+    color: rgba(255, 255, 255, 0.75);
+    transition: all 0.3s cubic-bezier(.64, 0, .25, 1);
+    position: relative;
+}
+
+.switch>label:before {
+    content: '';
+    position: absolute;
+    height: 200%;
+    width: 200%;
+    left: 50%;
+    top: 50%;
+    transform-style: preserve-3d;
+    transform: translate(-50%, -50%) rotate(0deg);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(.64, 0, .25, 1);
+    background: radial-gradient(circle at 50% 50%, #FFE175, transparent 55%, transparent);
+    mask-image: repeating-conic-gradient(transparent 0 32deg, black 0 36deg);
+}
+
+.switch>label:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    transform-style: preserve-3d;
+    border-radius: 100%;
+    transition: background 0.5s cubic-bezier(.64, 0, .25, 1), box-shadow 0.3s cubic-bezier(.64, 0, .25, 1);
+    background:
+        radial-gradient(circle at 5% 15%, rgba(0, 0, 0, 0.1) 0%, transparent 100%) no-repeat,
+        radial-gradient(circle at 80% 45%, rgba(0, 0, 0, 0.1) 0%, transparent 100%) no-repeat,
+        radial-gradient(circle at 110% 190%, rgba(0, 0, 0, 0.1) 0%, transparent 100%) no-repeat;
+    background-color: white;
+    box-shadow: inset 0 0 2rem rgba(0, 0, 0, 0.25), 0 0 0.5rem rgba(255, 255, 255, 0.75);
+}
+
+@keyframes sun {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+.light-ui h1,
+.light-ui h2,
+.light-ui h3,
+.light-ui h4,
+.light-ui h5,
+.light-ui h6,
+.light-ui p,
+.light-ui .about-text,
+.light-ui .contact-info :is(.contact-link, time, address),
+.light-ui .name,
+.light-ui .social-item .social-link,
+.light-ui .navbar-link,
+.light-ui button,
+.light-ui .project-title {
+    color: #2f2f2f !important;
+}
+
+
+.light-ui .navbar-link.active,
+.light-ui .social-item .social-link:hover {
+    color: var(--blue-steel) !important;
+}
+
+.light-ui .filter-item button.active {
+    color:var(--blue-crayola) !important;
+  }
+  
+  .light-ui .navbar-link:hover,
+  .light-ui .filter-item button:hover {
+    color:rgb(236, 236, 236) !important;
+  }
+
+
+.light-ui .title {
+    background-color: #ebebeb9f !important;
+}
+
+.light-ui .service-item::before {
+    background: #d6d6d6 !important;
+    inset: 0px;
+}
+
+.light-ui .icon-box::before {
+    background: #d6d6d6 !important;
+    inset: 0px;
+}
+
+.light-ui .mapbox iframe {
+    filter: grayscale(0) invert(0);
+}
+
+.light-ui .form-btn {
+    background-color: #ebebeb9f !important;
+    color: var(--blue-crayola);
+}
+
+.light-ui .form-btn::before {
+    background-color: #ebebeb9f !important;
+    inset: 0px;
+}
+
+.light-ui .form-btn:disabled:hover {
+    background-color: #ebebeb9f !important;
+}
+  
+.light-ui .form-btn:disabled:hover::before {
+    background-color: none !important;
+}
+
+.light-ui #MainDiv {
+    background-color: rgb(200, 200, 200);
+    color: #000000 !important;
+}

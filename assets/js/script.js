@@ -10,7 +10,7 @@ const MouseGlow = document.getElementById("MouseGlow");
 
 // Make mouse glow follow mouse
 window.addEventListener("mousemove", (event) => {
-    MouseGlow.animate({left: `${event.clientX}px`, top: `${event.clientY}px`}, {duration: 3500, fill: "forwards"});
+    MouseGlow.animate({left: `${event.clientX}px`, top: `${event.clientY}px`}, {duration: 100, fill: "forwards"});
 });
 
 

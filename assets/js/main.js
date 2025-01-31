@@ -41,3 +41,25 @@ function ChangeState()
 }
 
 
+function NightMode(checkbox) {
+    checkbox.addEventListener('change', function () {
+      if (checkbox.checked) {
+        document.documentElement.classList.add("light-ui");
+      } else {
+        document.documentElement.classList.remove("light-ui");
+      }
+    });
+  
+    // Always default to dark mode
+    checkbox.checked = false;
+    document.documentElement.classList.remove("light-ui");
+  }
+  
+  var lightMode = document.getElementById('light-mode');
+  NightMode(lightMode);
+  
+  
+  
+  
+
+

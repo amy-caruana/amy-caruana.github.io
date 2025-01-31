@@ -3,13 +3,6 @@
 \*-----------------------------------*/
 
 
-/**
- * copyright 2022 @codewithsadee
- */
-
-
-
-
 
 /*-----------------------------------*\
   #CUSTOM PROPERTY
@@ -306,7 +299,7 @@ body {
   translate: -50% -50%;
   /* Center it on the mouse pointer */
 
-  background-color: rgba(71, 89, 227, 0.25);
+  background-color: rgba(71, 89, 227, 0.2);
   border-radius: 50%;
   /* Prevent it from interfering with interactions */
 }
@@ -316,7 +309,7 @@ body {
   height: 130%;
 
   position: absolute;
-  backdrop-filter: blur(12vmax);
+  backdrop-filter: blur(8vmax);
  
   /* Prevent it from interfering with interactions */
 }
@@ -2269,5 +2262,7 @@ textarea.form-input::-webkit-resizer {
       width: 50px;
       height: 50px;
   }
+
+  
 
 }
