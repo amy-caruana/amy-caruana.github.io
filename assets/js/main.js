@@ -58,8 +58,39 @@ function NightMode(checkbox) {
   var lightMode = document.getElementById('light-mode');
   NightMode(lightMode);
   
+
+  /*ENABLE BELOW FOR LOCAL STORAGE TO STORE LAST SET TOGGLE MODE*/
   
+//   function NightMode(checkbox) {
+//     checkbox.addEventListener('change', function () {
+//       localStorage.setItem("night-mode", JSON.stringify(checkbox.checked));
+//     });
   
+//     // Check local storage or system preference for initial state
+//     let nm = JSON.parse(localStorage.getItem("night-mode"));
+  
+//     if (nm === null) {
+//       nm = false; // Default to light mode
+//     }
+  
+//     checkbox.checked = nm;
+//     document.documentElement.classList.toggle("light-ui", nm);
+//   }
+  
+//   var lightMode = document.getElementById('light-mode');
+//   NightMode(lightMode);
+  
+//   lightMode.addEventListener('change', function () {
+//     if (lightMode.checked) {
+//       setTimeout(function () {
+//         document.documentElement.classList.add("light-ui");
+//       }, 100);
+//     } else {
+//       setTimeout(function () {
+//         document.documentElement.classList.remove("light-ui");
+//       }, 100);
+//     }
+//   });
   
 
 

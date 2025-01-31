@@ -164,13 +164,13 @@ body {
 }
 
 .light-ui .filter-item button.active {
-    color:var(--blue-crayola) !important;
-  }
-  
-  .light-ui .navbar-link:hover,
-  .light-ui .filter-item button:hover {
-    color:rgb(236, 236, 236) !important;
-  }
+    color: var(--blue-crayola) !important;
+}
+
+.light-ui .navbar-link:hover,
+.light-ui .filter-item button:hover {
+    color: rgb(236, 236, 236) !important;
+}
 
 
 .light-ui .title {
@@ -204,7 +204,7 @@ body {
 .light-ui .form-btn:disabled:hover {
     background-color: #ebebeb9f !important;
 }
-  
+
 .light-ui .form-btn:disabled:hover::before {
     background-color: none !important;
 }
