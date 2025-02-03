@@ -1,16 +1,50 @@
 'use strict';
 
-
-
 // element toggle function
 const elementToggleFunc = function (elem) { elem.classList.toggle("active"); }
 
 
-const MouseGlow = document.getElementById("MouseGlow");
 
-// Make mouse glow follow mouse
-window.addEventListener("mousemove", (event) => {
-    MouseGlow.animate({left: `${event.clientX}px`, top: `${event.clientY}px`}, {duration: 100, fill: "forwards"});
+const mouseGlow = document.getElementById("MouseGlow");
+const mouseGlowBlur = document.getElementById("MouseGlowBlur");
+
+function updatePosition(event) {
+  // Set the position of the mouse glow to follow the cursor immediately
+  mouseGlow.style.left = `${event.clientX}px`;
+  mouseGlow.style.top = `${event.clientY}px`;
+
+  mouseGlowBlur.style.left = `${event.clientX}px`;
+  mouseGlowBlur.style.top = `${event.clientY}px`;
+
+}
+
+// Use mousemove event to update position
+window.addEventListener("mousemove", updatePosition);
+
+// Optional: Hide the glow when the mouse leaves the viewport
+window.addEventListener("mouseleave", () => {
+  mouseGlow.style.opacity = 0;
+  mouseGlowBlur.style.opacity = 0;
+});
+
+
+// Use mousemove event to update position
+window.addEventListener("mousemove", updatePosition);
+
+// Optional: You can hide the glow when the mouse leaves the viewport
+window.addEventListener("mouseleave", () => {
+  mouseGlow.style.opacity = 0;
+  mouseGlowBlur.style.opacity = 0;
+});
+
+
+// Use mousemove event to update position
+window.addEventListener("mousemove", updatePosition);
+
+// Optional: You can hide the glow when the mouse leaves the viewport
+window.addEventListener("mouseleave", () => {
+  mouseGlow.style.opacity = 0;
+  mouseGlowBlur.style.opacity = 0;
 });
 
 
