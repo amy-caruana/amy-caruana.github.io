@@ -291,6 +291,37 @@ body {
   scrollbar-width: none;
 }
 
+#MouseGlow {
+  width: 80px; /* Increase size of the outer circle */
+  height: 80px;
+  position: absolute;
+  background-color: rgba(45, 56, 119, 0.5); /* Darker color for the outer circle */
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  filter: blur(15px); /* Apply blur to the outer circle */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.1s ease-out;
+  overflow: hidden;
+}
+
+#MouseGlowBlur {
+  width: 60%; /* Keep the inner circle smaller but bigger than before */
+  height: 60%;
+  position: absolute;
+  background-color: rgba(71, 89, 227, 0.7); /* Lighter color for the inner circle */
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(5px); /* Apply a subtle blur to the inner circle */
+  transition: opacity 0.1s ease-out;
+}
+
+
+
+
+
 
 
 

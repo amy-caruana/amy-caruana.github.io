@@ -205,6 +205,11 @@ body {
     background-color: #ebebeb9f !important;
 }
 
+.light-ui .info_more-btn::before {
+    background-color: #ebebeb9f !important;
+}
+
+
 .light-ui .form-btn:disabled:hover::before {
     background-color: none !important;
 }
