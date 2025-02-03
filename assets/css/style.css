@@ -291,27 +291,6 @@ body {
   scrollbar-width: none;
 }
 
-#MouseGlow {
-  width: 80px; /* Increase size of the outer circle */
-  height: 80px;
-  position: absolute;
-  background-color: rgba(45, 56, 119, 0.5); /* Darker color for the outer circle */
-  border-radius: 50%;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  filter: blur(15px); /* Apply blur to the outer circle */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: transform 0.1s ease-out;
-  overflow: hidden;
-}
-
-
-
-
-
-
 
 
 
