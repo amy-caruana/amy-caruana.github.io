@@ -158,7 +158,6 @@ for (let i = 0; i < filterBtn.length; i++) {
 }
 
 
-
 // contact form variables
 const form = document.querySelector("[data-form]");
 const formInputs = document.querySelectorAll("[data-form-input]");
@@ -177,44 +176,6 @@ for (let i = 0; i < formInputs.length; i++) {
 
   });
 }
-
-// Initialize EmailJS with your User ID
-emailjs.init("9SSUGH96j6_nq1ZRJ");
-
-const form = document.querySelector("[data-form]");
-const formBtn = document.querySelector("[data-form-btn]");
-
-form.addEventListener("submit", function (event) {
-  event.preventDefault(); // Prevent form refresh
-
-  formBtn.disabled = true;
-  formBtn.innerHTML = `
-    <ion-icon name="hourglass-outline"></ion-icon> Sending...`;
-
-  const formData = {
-    fullname: form.fullname.value,
-    email: form.email.value,
-    message: form.message.value,
-  };
-
-  // Sending the form data
-  emailjs
-    .send("service_1tkamwo", "template_v0474we", formData)
-    .then(() => {
-      alert("Message sent successfully!");
-      form.reset();
-      formBtn.disabled = false;
-      formBtn.innerHTML = `
-        <ion-icon name="paper-plane"></ion-icon> <span>Send Message</span>`;
-    })
-    .catch(() => {
-      alert("Failed to send the message. Please try again.");
-      formBtn.disabled = false;
-      formBtn.innerHTML = `
-        <ion-icon name="paper-plane"></ion-icon> <span>Send Message</span>`;
-    });
-});
-
 
 
 
