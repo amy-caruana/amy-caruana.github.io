@@ -1,7 +1,9 @@
 'use strict';
 
 // element toggle function
-const elementToggleFunc = function (elem) { elem.classList.toggle("active"); }
+const elementToggleFunc = function (elem) {
+  elem.classList.toggle("active");
+}
 
 
 
@@ -55,7 +57,9 @@ const sidebar = document.querySelector("[data-sidebar]");
 const sidebarBtn = document.querySelector("[data-sidebar-btn]");
 
 // sidebar toggle functionality for mobile
-sidebarBtn.addEventListener("click", function () { elementToggleFunc(sidebar); });
+sidebarBtn.addEventListener("click", function () {
+  elementToggleFunc(sidebar);
+});
 
 
 
@@ -105,7 +109,9 @@ const selectItems = document.querySelectorAll("[data-select-item]");
 const selectValue = document.querySelector("[data-selecct-value]");
 const filterBtn = document.querySelectorAll("[data-filter-btn]");
 
-select.addEventListener("click", function () { elementToggleFunc(this); });
+select.addEventListener("click", function () {
+  elementToggleFunc(this);
+});
 
 // add event in all select items
 for (let i = 0; i < selectItems.length; i++) {
@@ -177,6 +183,36 @@ for (let i = 0; i < formInputs.length; i++) {
   });
 }
 
+// EmailJS initialization
+(function () {
+  emailjs.init("9SSUGH96j6_nq1ZRJ");
+})();
+
+document.getElementById("contact-form").addEventListener("submit", function(event) {
+  event.preventDefault(); // Prevent default form submission behavior
+  sendMail(); // Call the sendMail function when the form is submitted
+});
+
+function sendMail() {
+  let parms = {
+    name: document.getElementById("name").value,
+    email: document.getElementById("email").value,
+    message: document.getElementById("message").value
+  };
+
+  emailjs.send("service_1tkamwo", "template_v0474we", parms)
+    .then(function(response) {
+      alert("Email sent successfully!");
+
+      // Clear the form fields after the email is sent
+      document.getElementById("contact-form").reset();
+    })
+    .catch(function(error) {
+      alert("Error sending email: " + error.text);
+    });
+}
+
+
 
 
 // page navigation variables
@@ -200,4 +236,3 @@ for (let i = 0; i < navigationLinks.length; i++) {
 
   });
 }
-
