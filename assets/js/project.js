@@ -49,4 +49,21 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   });
+
+
+  item.addEventListener('click', e => {
+    e.preventDefault();
+  
+    const modal = document.getElementById('projectModal');
+    const modalContent = modal.querySelector('.modal-content');
+  
+    const rect = item.getBoundingClientRect();
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+  
+    modalContent.style.top = `${rect.top + scrollTop}px`;
+    modalContent.style.left = `${rect.left}px`;
+  
+    // continue with your existing openModal() logic
+  });
+  
   
