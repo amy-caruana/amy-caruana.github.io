@@ -140,6 +140,28 @@ body {
     }
 }
 
+
+/* in your main CSS, *after* the .switch rules: */
+@media (max-width: 480px) {
+    .switch {
+      width: 2.5rem;        /* down from 3.5rem */
+      height: 0.75rem;    /* down from 1rem */
+      margin: 0.5rem;     /* tweak so the margin isn’t huge */
+    }
+  
+    .switch > label {
+      width: 1rem;      /* down from 2rem */
+      height: 1rem;     /* down from 2rem */
+    }
+  
+    /* when “checked,” the label needs to move all the way to the other side:
+       translateX(100%) = 1.5rem, exactly switch-width (3rem) minus label-width (1.5rem) */
+    .switch > input:checked + label {
+      transform: translateX(100%);
+    }
+  }
+  
+
 .light-ui h1,
 .light-ui h2,
 .light-ui h3,
