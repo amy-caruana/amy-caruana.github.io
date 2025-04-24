@@ -59,6 +59,7 @@
   -->
   <link rel="stylesheet" href="./assets/css/style.css">
   <link rel="stylesheet" href="./assets/css/style2.css">
+  <link rel="stylesheet" href="./assets/css/projects.css">
 
   <!--
     - google font link
@@ -387,6 +388,25 @@
               <h2 class="h2 article-title">Projects</h2>
             </header>
 
+          <!-- Project Preview Modal -->
+          <div id="projectModal" class="modal" aria-hidden="true">
+            <div class="modal-content">
+              <header class="modal-header">
+                <h3 class="modal-title"></h3>
+                <button class="modal-close" aria-label="Close">×</button>
+              </header>
+
+              <div class="modal-body">
+                <img class="modal-img" src="" alt="" />
+                <p class="modal-desc"></p>
+              </div>
+
+              <footer class="modal-footer">
+                <!-- Add your link here; you can inject href via JS or hard-code -->
+                <a href="#" class="modal-link" target="_blank" rel="noopener">View Live</a>
+              </footer>
+            </div>
+          </div>
 
             <section class="projects">
 
@@ -453,6 +473,32 @@
               </div>
 
               <ul class="project-list">
+
+                <li class="project-item active"
+                  data-filter-item
+                  data-category="applications"
+                  data-title="Pricely"
+                  data-description="Pricely helps you compare supermarket prices around you in real time, showing best deals and historical averages."
+                  data-image="./assets/images/Pricely.png"
+                  data-url="https://github.com/amy-caruana/ac-portfolio/tree/main/Projects/Pricely%20Flutter%20Project"
+                >
+                  <a href="#">
+                    <figure class="project-img">
+                      <div class="project-item-icon-box">
+                        <ion-icon name="eye-outline"></ion-icon>
+                      </div>
+                      <img
+                        src="./assets/images/PricelyMockup2.png"
+                        alt="Price Comparison App"
+                        loading="lazy"
+                      />
+                    </figure>
+                
+                    <h3 class="project-title">Pricely</h3>
+                    <p class="project-category">Applications</p>
+                  </a>
+                </li>
+              
 
                 <li class="project-item  active" data-filter-item data-category="prototypes">
                   <a href="#">
@@ -781,6 +827,7 @@
   <script type="module" src="./assets/js/canvas.js"></script>
   <script src="./assets/js/script.js"></script>
   <script src="./assets/js/main.js"></script>
+  <script src="./assets/js/project.js"></script>
 
 
 </body>
