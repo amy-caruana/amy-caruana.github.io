@@ -213,9 +213,20 @@ body {
     filter: grayscale(0) invert(0);
 }
 
-.light-ui #name, #email, #message  {
+.light-ui #message {
     color: #2f2f2f !important;
 }
+
+.light-ui #name {
+    color: #2f2f2f !important;
+}
+.light-ui #email {
+    color: #2f2f2f !important;
+}
+/* .light-ui #name, #email, #message  {
+    color: #2f2f2f !important;
+} */
+
 .light-ui .form-btn {
     background-color: #ebebeb9f !important;
     color: var(--blue-crayola);

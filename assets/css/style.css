@@ -1348,6 +1348,11 @@ main {
   margin-bottom: 10px;
 }
 
+
+#name, #email, #message  {
+  color: white !important;
+}
+
 /* for most browsers */
 .form-input::selection  {
   background-color: #4487bb;  
