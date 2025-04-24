@@ -114,13 +114,14 @@
 /* overlay */
 /* 1) Overlay */
 .modal {
-    background: rgba(0,0,0,0.75);
+    background: rgba(105, 105, 105, 0);
     backdrop-filter: blur(4px);
-    position: fixed;
+    position: absolute;
     inset: 0;
     display: none;
     align-items: center;
     justify-content: center;
+    overscroll-behavior: contain;
     padding: 1rem;
     z-index: 999;
   }
@@ -130,15 +131,15 @@
   
   /* 2) Card */
   .modal-content {
-    background: rgba(104, 104, 104, 0.386);
+    background: rgba(37, 37, 37, 0.921);
     border-radius: 1rem;
-    width: 90%;
     max-width: 800px;
-    max-height: 65vh;
+    width: 90%;
+    max-height: 90vh;
+    overflow: hidden; /* now modal itself handles overflow */
     display: flex;
     flex-direction: column;
-    overflow: hidden;
-    box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
     transform: scale(0.8);
     opacity: 0;
     transition: transform .3s ease-out, opacity .3s ease-out;
@@ -180,7 +181,7 @@
   .modal-body {
     display: flex;
     gap: 1.5rem;
-    padding: 0 2rem;
+    padding: 1rem 2rem;
     flex: 1;
     overflow-y: auto;
   }
