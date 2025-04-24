@@ -32,7 +32,7 @@
       hsl(0, 0%, 25%) 0%,
       hsla(0, 0%, 25%, 0) 50%);
   --text-gradient-blue: linear-gradient(to right,
-      hsl(206, 47%, 50%),
+      #4487bb,
       hsl(206, 47%, 50%));
 
 
@@ -1347,6 +1347,19 @@ main {
   position: relative;
   margin-bottom: 10px;
 }
+
+/* for most browsers */
+.form-input::selection  {
+  background-color: #4487bb;  
+  color: #fff;                /* white text */
+}
+
+/* for Firefox */
+.form-input::-moz-selection {
+  background-color: #4487bb;
+  color: #fff;
+}
+
 
 .form-title {
   margin-bottom: 20px;
