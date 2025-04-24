@@ -144,7 +144,7 @@ body {
 /* in your main CSS, *after* the .switch rules: */
 @media (max-width: 480px) {
     .switch {
-      width: 2.5rem;        /* down from 3.5rem */
+      width: 2rem;        /* down from 3.5rem */
       height: 0.75rem;    /* down from 1rem */
       margin: 0.5rem;     /* tweak so the margin isn’t huge */
     }
