@@ -1,19 +1,68 @@
+// preload.js
 
+// Helper: Check if Hardware Acceleration is enabled
+function isHardwareAccelerationEnabled() {
+    try {
+        const canvas = document.createElement('canvas');
+        const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+        if (!gl) return false;
+        const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+        if (debugInfo) {
+            const renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+            return !/software/i.test(renderer);
+        }
+        return true;
+    } catch (e) {
+        return false;
+    }
+}
+
+function showLowPerformanceBanner() {
+    const banner = document.createElement('div');
+    banner.style.position = 'fixed';
+    banner.style.bottom = '10px';
+    banner.style.left = '50%';
+    banner.style.transform = 'translateX(-50%)';
+    banner.style.padding = '8px 16px';
+    banner.style.background = 'rgba(0,0,0,0.7)';
+    banner.style.color = '#fff';
+    banner.style.borderRadius = '8px';
+    banner.style.fontSize = '0.85rem';
+    banner.style.zIndex = '9999';
+    banner.style.backdropFilter = 'blur(4px)';
+    banner.textContent = 'Low Performance Mode: Please enable Hardware Acceleration for the best experience.';
+    document.body.appendChild(banner);
+
+    setTimeout(() => {
+        banner.remove();
+    }, 8000);
+}
 
 const preload = () => {
-console.log("PRELOADING")
+    console.log("PRELOADING");
     let manager = new THREE.LoadingManager();
     manager.onLoad = function () {
         const environment = new Environment(typo, particle);
-    }
+    };
 
-    var typo = null;
+    let typo = null;
     const loader = new THREE.FontLoader(manager);
-    const font = loader.load('https://res.cloudinary.com/dydre7amr/raw/upload/v1612950355/font_zsd4dr.json', function (font) {
+    loader.load('https://res.cloudinary.com/dydre7amr/raw/upload/v1612950355/font_zsd4dr.json', function (font) {
         typo = font;
     });
-    const particle = new THREE.TextureLoader(manager).load('https://res.cloudinary.com/dfvtkoboz/image/upload/v1605013866/particle_a64uzf.png');
-}
+
+    const particle = new THREE.TextureLoader(manager)
+        .load('https://res.cloudinary.com/dfvtkoboz/image/upload/v1605013866/particle_a64uzf.png');
+
+    if (!isHardwareAccelerationEnabled()) {
+        console.warn('Low Performance Mode Active');
+        window.lowPerformanceMode = true;
+        CreateParticles.prototype.lowPerformanceMode = true;
+        showLowPerformanceBanner();
+    } else {
+        console.log('Hardware Acceleration Detected');
+    }
+};
 
 if (document.readyState === "complete" || (document.readyState !== "loading" && !document.documentElement.doScroll))
     preload();
@@ -21,34 +70,30 @@ else
     document.addEventListener("DOMContentLoaded", preload);
 
 class Environment {
-
     constructor(font, particle) {
         this.font = font;
         this.particle = particle;
         this.container = document.querySelector('#magic');
-        this.canvas = document.getElementById('Canvas3D'); // Get the canvas
+        this.canvas = document.getElementById('Canvas3D');
         this.scene = new THREE.Scene();
         this.createCamera();
         this.createRenderer();
-        this.setup()
+        this.setup();
         this.bindEvents();
     }
 
     bindEvents() {
-
         window.addEventListener('resize', this.onWindowResize.bind(this));
-
     }
 
     setup() {
         this.createParticles = new CreateParticles(this.scene, this.font, this.particle, this.camera, this.renderer);
         console.log("CREATING PARTICLES");
-
     }
 
     render() {
-        this.createParticles.render()
-        this.renderer.render(this.scene, this.camera)
+        this.createParticles.render();
+        this.renderer.render(this.scene, this.camera);
     }
 
     createCamera() {
@@ -64,46 +109,37 @@ class Environment {
         this.renderer.setAnimationLoop(() => { this.render(); });
     }
 
-
     onWindowResize() {
         this.camera.aspect = this.container.clientWidth / this.container.clientHeight;
         this.camera.updateProjectionMatrix();
         this.renderer.setSize(this.container.clientWidth, this.container.clientHeight);
     }
-
 }
 
 class CreateParticles {
-
     constructor(scene, font, particleImg, camera, renderer) {
-
         this.scene = scene;
         this.font = font;
         this.particleImg = particleImg;
         this.camera = camera;
         this.renderer = renderer;
-
         this.raycaster = new THREE.Raycaster();
         this.mouse = new THREE.Vector2(-200, 200);
-
         this.colorChange = new THREE.Color();
-
         this.buttom = false;
 
         this.data = {
-            // text: 'FUTURE\nIS NOW',
             text: 'WELCOME TO \n MY PORTFOLIO',
-            amount: 1500,
+            amount: window.lowPerformanceMode ? 300 : 1500,
             particleSize: 1,
             particleColor: 0xffffff,
-            textSize: 15,
+            textSize: window.lowPerformanceMode ? 10 : 15,
             area: 250,
-            ease: .05,
-        }
+            ease: window.lowPerformanceMode ? 0.08 : 0.05,
+        };
 
         this.setup();
         this.bindEvents();
-
     }
 
 

@@ -1,4 +1,3 @@
-
 // Get the canvas element
 const Canvas = document.getElementById("Canvas3D");
 
